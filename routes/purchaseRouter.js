@@ -28,6 +28,7 @@ purchaseRouter.get(
             product: 1,
             titem: 1,
             gtotal: 1,
+<<<<<<< HEAD
             supplier: 1,
             poId: 1,
             shippingcost: 1,
@@ -38,6 +39,20 @@ purchaseRouter.get(
         .populate("reqId", "reqId")
         console.log(purchase)
         res.send(purchase);
+=======
+
+        });
+        res.send(purchase[0]);
+>>>>>>> 7ff2e38a05e872931baabe93fd6691d9b66818f6
+    })
+);
+purchaseRouter.get(
+    "/dw",
+    expressAsyncHandler(async (req, res) => {
+        const purchase = await Purchase.find({});
+        res.send(purchase);
+        // // res.send('removed');
+        console.log(purchase);
     })
 );
 

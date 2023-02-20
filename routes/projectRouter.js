@@ -21,7 +21,7 @@ projectRouter.get(
             status: 1,
 
         })
-        .populate("client","name")
+            .populate("client", "name")
         console.log(projects);
         res.send(projects);
         // // res.send('removed');
@@ -34,12 +34,12 @@ projectRouter.get(
 //     expressAsyncHandler(async (req, res) => {
 //       let type = req.params.type;
 //       let query = {type: type}
-  
+
 //       if(type === "all"){
 //         query = {}
 //       }
-  
-      
+
+
 //       const projects = await Project.find(query);
 //       res.send(projects);
 //     })
@@ -53,6 +53,12 @@ projectRouter.get(
             _id: 1,
             name: 1,
         })
+        // <<<<<<< HEAD
+        //         //  .populate("user", "name")
+        //         res.send(projects);
+        //         // // res.send('removed');
+        // =======
+        // >>>>>>> 83e7c9d97d0e49459dcf5318c0a00f0bdf6920f5
         console.log(projects);
         res.send(projects);
     })
@@ -74,8 +80,8 @@ projectRouter.get(
             workOrder: 1,
             subContractor: 1,
         })
-        .populate("client", "name")
-        .populate("subContractor", "name");
+            .populate("client", "name")
+            .populate("subContractor", "name");
         res.send(project[0]);
     })
 );
@@ -106,7 +112,7 @@ projectRouter.post(
     expressAsyncHandler(async (req, res) => {
         const newProject = new Project(req.body);
         try {
-            await newProject.save().then(result=>{
+            await newProject.save().then(result => {
                 console.log(result.data)
                 res.status(200).json({
                     message: "Project is created Successfully",
