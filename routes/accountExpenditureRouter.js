@@ -41,7 +41,7 @@ accountExpenditureRouter.get(
 accountExpenditureRouter.get(
   "/dw",
   expressAsyncHandler(async (req, res) => {
-    const accountExpenditure = await accountExpenditure.find({}).select({
+    const accountExpenditure = await AccountExpenditure.find({}).select({
       _id: 1,
       name: 1,
     });
@@ -54,7 +54,7 @@ accountExpenditureRouter.get(
   "/:ac",
   expressAsyncHandler(async (req, res) => {
     const ac = req.params.ac
-    const accountExpenditure = await accountExpenditure.find({ accountHead: ac }).select({
+    const accountExpenditure = await AccountExpenditure.find({ accountHead: ac }).select({
       _id: 1,
       name: 1,
     });
@@ -67,7 +67,7 @@ accountExpenditureRouter.get(
   "/:rp",
   expressAsyncHandler(async (req, res) => {
     const rp = req.params.rp
-    const accountExpenditure = await accountExpenditure.find({ responsiblePerson: rp }).select({
+    const accountExpenditure = await AccountExpenditure.find({ responsiblePerson: rp }).select({
       _id: 1,
       name: 1,
     });
@@ -80,7 +80,7 @@ accountExpenditureRouter.get(
   "/:bank",
   expressAsyncHandler(async (req, res) => {
     const bank = req.params.bank
-    const accountExpenditure = await accountExpenditure.find({ bank: bank }).select({
+    const accountExpenditure = await AccountExpenditure.find({ bank: bank }).select({
       _id: 1,
       name: 1,
     });
@@ -94,7 +94,7 @@ accountExpenditureRouter.get(
   "/:p",
   expressAsyncHandler(async (req, res) => {
     const p = req.params.p
-    const accountExpenditure = await accountExpenditure.find({ projectName: p }).select({
+    const accountExpenditure = await AccountExpenditure.find({ projectName: p }).select({
       _id: 1,
       name: 1,
     });
@@ -107,7 +107,7 @@ accountExpenditureRouter.get(
   "/:date",
   expressAsyncHandler(async (req, res) => {
     const p = req.params.date
-    const accountExpenditure = await accountExpenditure.find({ date: p }).select({
+    const accountExpenditure = await AccountExpenditure.find({ date: p }).select({
       _id: 1,
       name: 1,
     });

@@ -1,7 +1,7 @@
 const express = require("express");
 const expressAsyncHandler = require("express-async-handler");
 const ReceivedAmount = require("../models/receivedAmountModel");
-const {generatReceivedAmountId} = require("../middlewares/generateId");
+const { generateReceivedAmountId } = require("../middlewares/generateId");
 const receivedAmountRouter = express.Router();
 
 //GET ALL receivedAmountS
@@ -13,14 +13,14 @@ receivedAmountRouter.get(
       date: 1,
       // accHead: 1,
       details: 1,
-      amount:1,
-      type:1,
-      chequeNo:1,
-      bank:1,
-      particular:1,
-      status:1,
+      amount: 1,
+      type: 1,
+      chequeNo: 1,
+      bank: 1,
+      particular: 1,
+      status: 1,
     })
-      .populate("bank", "name") ;
+      .populate("bank", "name");
     res.send(receivedAmount);
     // // res.send('removed');
     console.log(receivedAmount);
@@ -33,18 +33,18 @@ receivedAmountRouter.get(
   expressAsyncHandler(async (req, res) => {
     const id = req.params.id;
     const receivedAmount = await ReceivedAmount.find({ _id: id }).select({
-        // slNo: 1,
-        date: 1,
-        // accHead: 1,
-        details: 1,
-        amount:1,
-        type:1,
-        chequeNo:1,
-        bank:1,
-        particular:1,
-        status:1,
+      // slNo: 1,
+      date: 1,
+      // accHead: 1,
+      details: 1,
+      amount: 1,
+      type: 1,
+      chequeNo: 1,
+      bank: 1,
+      particular: 1,
+      status: 1,
     })
-    .populate("bank", "name");
+      .populate("bank", "name");
     res.send(receivedAmount[0]);
   })
 );
@@ -53,7 +53,7 @@ receivedAmountRouter.get(
 // CREATE ONE receivedAmount
 receivedAmountRouter.post(
   "/",
-  generatReceivedAmountId,
+  generateReceivedAmountId,
   expressAsyncHandler(async (req, res) => {
     const newReceivedAmount = new ReceivedAmount(req.body);
     try {
@@ -73,14 +73,14 @@ receivedAmountRouter.post(
 receivedAmountRouter.get(
   "/dw",
   expressAsyncHandler(async (req, res) => {
-      const receivedAmount = await receivedAmount.find({}).select({
-          _id: 1,
-          name: 1,
-      })
-      .populate("bank","name")
-      res.send(receivedAmount);
-      // // res.send('removed');
-      console.log(receivedAmount);
+    const receivedAmount = await receivedAmount.find({}).select({
+      _id: 1,
+      name: 1,
+    })
+      .populate("bank", "name")
+    res.send(receivedAmount);
+    // // res.send('removed');
+    console.log(receivedAmount);
   })
 );
 

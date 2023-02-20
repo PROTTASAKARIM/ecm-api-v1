@@ -19,7 +19,7 @@ const generatePoId = async (req, res, next) => {
   const date = format(new Date(new Date()), "MMddyyyy");
   const newId = process.env.ID_PREFIX + "-PO-" + date + "-" + current;
   console.log(newId);
-  req.body.poId = newId; 
+  req.body.poId = newId;
   next();
 };
 
@@ -93,10 +93,26 @@ const generateAccExpId = async (req, res, next) => {
   req.body.accExpId = newId;
   next();
 };
+// Generate Account Expenditure Id
+const generateAccIncId = async (req, res, next) => {
+  // TODO:: todays total
+
+  const todayTotal = await AccountExpenditure.countDocuments({
+    createdAt: { $gte: startOfDay(new Date()), $lte: endOfDay(new Date()) },
+  });
+
+  const number = ("000" + (todayTotal + 1)).toString();
+  const current = number.substring(number.length - 4);
+  const date = format(new Date(new Date()), "MMddyyyy");
+  const newId = process.env.ID_PREFIX + "-AccInc-" + date + "-" + current;
+  console.log(newId);
+  req.body.accIncId = newId;
+  next();
+};
 
 
 // Generate Received Amount Id
-const generatReceivedAmountId = async (req, res, next) => {
+const generateReceivedAmountId = async (req, res, next) => {
   // TODO:: todays total
 
   const todayTotal = await ReceivedAmount.countDocuments({
@@ -122,5 +138,6 @@ module.exports = {
   generateReqId,
   generatePaymentId,
   generateAccExpId,
-  generatReceivedAmountId,
+  generateAccIncId,
+  generateReceivedAmountId,
 };
