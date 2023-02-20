@@ -18,9 +18,9 @@ accountExpenditureRouter.get(
         bank: 1,
         projectName: 1,
         type: 1,
-        txid: 1,
+        txId: 1,
         phone: 1,
-        cardtype: 1,
+        cardType: 1,
         chequeNo: 1,
         mfsName: 1,
         amount: 1,
@@ -49,6 +49,72 @@ accountExpenditureRouter.get(
     res.send(accountExpenditure);
   })
 );
+//GET ALL AccountExpenditure for account head
+accountExpenditureRouter.get(
+  "/:ac",
+  expressAsyncHandler(async (req, res) => {
+    const ac = req.params.ac
+    const accountExpenditure = await accountExpenditure.find({ accountHead: ac }).select({
+      _id: 1,
+      name: 1,
+    });
+    console.log(accountExpenditure);
+    res.send(accountExpenditure);
+  })
+);
+//GET ALL AccountExpenditure for responsiblePerson
+accountExpenditureRouter.get(
+  "/:rp",
+  expressAsyncHandler(async (req, res) => {
+    const rp = req.params.rp
+    const accountExpenditure = await accountExpenditure.find({ responsiblePerson: rp }).select({
+      _id: 1,
+      name: 1,
+    });
+    console.log(accountExpenditure);
+    res.send(accountExpenditure);
+  })
+);
+//GET ALL AccountExpenditure for bank
+accountExpenditureRouter.get(
+  "/:bank",
+  expressAsyncHandler(async (req, res) => {
+    const bank = req.params.bank
+    const accountExpenditure = await accountExpenditure.find({ bank: bank }).select({
+      _id: 1,
+      name: 1,
+    });
+    console.log(accountExpenditure);
+    res.send(accountExpenditure);
+  })
+);
+
+//GET ALL AccountExpenditure for projectName
+accountExpenditureRouter.get(
+  "/:p",
+  expressAsyncHandler(async (req, res) => {
+    const p = req.params.p
+    const accountExpenditure = await accountExpenditure.find({ projectName: p }).select({
+      _id: 1,
+      name: 1,
+    });
+    console.log(accountExpenditure);
+    res.send(accountExpenditure);
+  })
+);
+//GET ALL AccountExpenditure for projectName
+accountExpenditureRouter.get(
+  "/:date",
+  expressAsyncHandler(async (req, res) => {
+    const p = req.params.date
+    const accountExpenditure = await accountExpenditure.find({ date: p }).select({
+      _id: 1,
+      name: 1,
+    });
+    console.log(accountExpenditure);
+    res.send(accountExpenditure);
+  })
+);
 
 // GET accountExpenditure by id
 accountExpenditureRouter.get(
@@ -64,9 +130,9 @@ accountExpenditureRouter.get(
         paidTo: 1,
         projectName: 1,
         type: 1,
-        txid: 1,
+        txId: 1,
         phone: 1,
-        cardtype: 1,
+        cardType: 1,
         chequeNo: 1,
         mfsName: 1,
         amount: 1,
